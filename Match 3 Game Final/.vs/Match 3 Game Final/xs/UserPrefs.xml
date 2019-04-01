@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{CD5663D2-EDFF-B94F-8369-0CDAF8D875EA}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Match 3 Starter/Scripts/Board and Grid/Tile.cs">
+    <Files>
+      <File FileName="Assets/Match 3 Starter/Scripts/Board and Grid/Tile.cs" Line="61" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Match 3 Game Final" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Match 3 Starter" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Board and Grid" expanded="True">
+                    <Node name="Tile.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Volumes/harddrive1/Match3Prototype/Match3Prototype/Match 3 Game Final/Assets/Match 3 Starter/Scripts/Board and Grid/Tile.cs" relfile="Assets/Match 3 Starter/Scripts/Board and Grid/Tile.cs" line="66" column="12" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
