@@ -30,6 +30,7 @@ public class BoardManager : MonoBehaviour {
 	public List<Sprite> characters = new List<Sprite>();
 	public GameObject tile;
 	public int xSize, ySize;
+    public bool isBoardCreated;
 
     private GameObject[,] tiles;
 
@@ -39,7 +40,9 @@ public class BoardManager : MonoBehaviour {
 		instance = GetComponent<BoardManager>();
 
 		Vector2 offset = tile.GetComponent<SpriteRenderer>().bounds.size;
+        isBoardCreated = false;
         CreateBoard(offset.x, offset.y);
+
     }
 
 	private void CreateBoard (float xOffset, float yOffset) {
@@ -69,8 +72,14 @@ public class BoardManager : MonoBehaviour {
 				previousBelow = newSprite;
 			}
         }
+        Invoke("invokeBoardCreation", 2);
     }
 
+
+    void invokeBoardCreation()
+    {
+        isBoardCreated = true;
+    }
     public void PlayAttackerAnimation()
     {
         AnimationManager.instance.PlayAttackerAnimation();

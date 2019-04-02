@@ -62,10 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Match 3 Starter\Scripts\Board and Grid\AnimationManager.cs" />
     <Compile Include="Assets\Match 3 Starter\Scripts\Board and Grid\BoardManager.cs" />
     <Compile Include="Assets\Match 3 Starter\Scripts\Board and Grid\Tile.cs" />
     <Compile Include="Assets\Match 3 Starter\Scripts\Effects\GUISizePingPong.cs" />
+    <Compile Include="Assets\Match 3 Starter\Scripts\Managers\AnimationManager.cs" />
     <Compile Include="Assets\Match 3 Starter\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Match 3 Starter\Scripts\Managers\GUIManager.cs" />
     <Compile Include="Assets\Match 3 Starter\Scripts\Managers\SFXManager.cs" />

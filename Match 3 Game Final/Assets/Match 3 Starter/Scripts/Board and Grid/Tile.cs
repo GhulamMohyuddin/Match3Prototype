@@ -23,10 +23,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
-public class Tile : MonoBehaviour {
+public class Tile : MonoBehaviour , IDragHandler, IBeginDragHandler, IEndDragHandler
+{
 	private static Color selectedColor = new Color(.5f, .5f, .5f, 1.0f);
 	private static Tile previousSelected = null;
+    public Transform initialPosition;
 
 	private SpriteRenderer render;
 	private bool isSelected = false;
@@ -42,6 +45,7 @@ public class Tile : MonoBehaviour {
 		render.color = selectedColor;
 		previousSelected = gameObject.GetComponent<Tile>();
 		SFXManager.instance.PlaySFX(Clip.Select);
+        initialPosition = transform;
 	}
 
 	private void Deselect() {
@@ -50,7 +54,7 @@ public class Tile : MonoBehaviour {
 		previousSelected = null;
 	}
 
-	void OnMouseDown() {
+	public void OnMouseDown() {
 		// Not Selectable conditions
 		if (render.sprite == null || BoardManager.instance.IsShifting) {
 			return;
@@ -149,6 +153,44 @@ public class Tile : MonoBehaviour {
             SFXManager.instance.PlaySFX(Clip.Clear);
 		}
         return matched;
+    }
+
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(BoardManager.instance.isBoardCreated)
+        {
+            Tile tileObject = collision.gameObject.GetComponent<Tile>();
+            if (tileObject)
+            {
+                Debug.Log("collides");
+                OnMouseDown();
+                transform.position = tileObject.transform.position;
+                tileObject.transform.position = initialPosition.position;
+
+
+
+            }
+        }
+
+    }
+    public void OnBeginDrag(PointerEventData data)
+    {
+        var world_point_mousePos = Camera.main.ScreenToWorldPoint(new Vector3(data.position.x, data.position.y, Mathf.Abs(Camera.main.transform.position.z)));
+
+        transform.position = world_point_mousePos;
+    }
+    public void OnDrag(PointerEventData data)
+    {
+        var world_point_mousePos = Camera.main.ScreenToWorldPoint(new Vector3(data.position.x, data.position.y, Mathf.Abs(Camera.main.transform.position.z)));
+
+        transform.position = world_point_mousePos;
+    }
+    public void OnEndDrag(PointerEventData data)
+    {
+        var world_point_mousePos = Camera.main.ScreenToWorldPoint(new Vector3(data.position.x, data.position.y, Mathf.Abs(Camera.main.transform.position.z)));
+
+        transform.position = world_point_mousePos;
     }
 
 }
