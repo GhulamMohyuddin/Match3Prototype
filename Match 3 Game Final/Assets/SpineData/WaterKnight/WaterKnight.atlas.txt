@@ -1,0 +1,391 @@
+
+WaterKnight.png
+size: 1024,1024
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+ELECTRICLE_10_00
+  rotate: false
+  xy: 367, 4
+  size: 29, 26
+  orig: 140, 79
+  offset: 51, 25
+  index: -1
+ELECTRICLE_10_01
+  rotate: true
+  xy: 798, 47
+  size: 42, 37
+  orig: 140, 79
+  offset: 45, 18
+  index: -1
+ELECTRICLE_10_02
+  rotate: true
+  xy: 923, 273
+  size: 49, 42
+  orig: 140, 79
+  offset: 40, 14
+  index: -1
+ELECTRICLE_10_03
+  rotate: true
+  xy: 969, 337
+  size: 55, 53
+  orig: 140, 79
+  offset: 37, 7
+  index: -1
+ELECTRICLE_10_04
+  rotate: false
+  xy: 847, 136
+  size: 58, 58
+  orig: 140, 79
+  offset: 37, 5
+  index: -1
+ELECTRICLE_10_05
+  rotate: true
+  xy: 960, 653
+  size: 63, 62
+  orig: 140, 79
+  offset: 34, 4
+  index: -1
+ELECTRICLE_10_06
+  rotate: true
+  xy: 856, 254
+  size: 64, 65
+  orig: 140, 79
+  offset: 32, 3
+  index: -1
+ELECTRICLE_10_07
+  rotate: false
+  xy: 924, 397
+  size: 65, 66
+  orig: 140, 79
+  offset: 31, 2
+  index: -1
+ELECTRICLE_10_08
+  rotate: true
+  xy: 788, 298
+  size: 68, 66
+  orig: 140, 79
+  offset: 29, 3
+  index: -1
+ELECTRICLE_10_09
+  rotate: true
+  xy: 856, 320
+  size: 70, 65
+  orig: 140, 79
+  offset: 28, 3
+  index: -1
+ELECTRICLE_10_10
+  rotate: true
+  xy: 788, 368
+  size: 74, 66
+  orig: 140, 79
+  offset: 27, 2
+  index: -1
+ELECTRICLE_10_11
+  rotate: true
+  xy: 776, 444
+  size: 75, 67
+  orig: 140, 79
+  offset: 26, 2
+  index: -1
+ELECTRICLE_10_12
+  rotate: false
+  xy: 845, 465
+  size: 73, 69
+  orig: 140, 79
+  offset: 26, 1
+  index: -1
+ELECTRICLE_10_13
+  rotate: true
+  xy: 856, 392
+  size: 71, 66
+  orig: 140, 79
+  offset: 27, 4
+  index: -1
+ELECTRICLE_10_14
+  rotate: true
+  xy: 960, 593
+  size: 58, 62
+  orig: 140, 79
+  offset: 31, 7
+  index: -1
+ENERGY_03_00
+  rotate: false
+  xy: 847, 196
+  size: 63, 56
+  orig: 210, 118
+  offset: 68, 24
+  index: -1
+ENERGY_03_01
+  rotate: true
+  xy: 610, 91
+  size: 107, 92
+  orig: 210, 118
+  offset: 41, 6
+  index: -1
+ENERGY_03_02
+  rotate: true
+  xy: 679, 298
+  size: 140, 107
+  orig: 210, 118
+  offset: 25, 0
+  index: -1
+ENERGY_03_03
+  rotate: false
+  xy: 870, 753
+  size: 148, 110
+  orig: 210, 118
+  offset: 22, 0
+  index: -1
+ENERGY_03_04
+  rotate: false
+  xy: 136, 16
+  size: 121, 81
+  orig: 210, 118
+  offset: 45, 10
+  index: -1
+ENERGY_03_05
+  rotate: false
+  xy: 778, 694
+  size: 81, 80
+  orig: 210, 118
+  offset: 57, 10
+  index: -1
+ENERGY_03_06
+  rotate: false
+  xy: 948, 516
+  size: 74, 75
+  orig: 210, 118
+  offset: 58, 12
+  index: -1
+ENERGY_06_00
+  rotate: true
+  xy: 991, 394
+  size: 69, 31
+  orig: 140, 79
+  offset: 5, 23
+  index: -1
+ENERGY_06_01
+  rotate: false
+  xy: 861, 718
+  size: 111, 33
+  orig: 140, 79
+  offset: 5, 23
+  index: -1
+ENERGY_06_02
+  rotate: false
+  xy: 673, 47
+  size: 123, 42
+  orig: 140, 79
+  offset: 14, 15
+  index: -1
+ENERGY_06_03
+  rotate: false
+  xy: 489, 36
+  size: 109, 54
+  orig: 140, 79
+  offset: 28, 6
+  index: -1
+ENERGY_06_04
+  rotate: false
+  xy: 869, 596
+  size: 81, 47
+  orig: 140, 79
+  offset: 55, 8
+  index: -1
+ENERGY_06_05
+  rotate: false
+  xy: 673, 2
+  size: 67, 43
+  orig: 140, 79
+  offset: 69, 9
+  index: -1
+back crown
+  rotate: true
+  xy: 319, 200
+  size: 168, 358
+  orig: 168, 358
+  offset: 0, 0
+  index: -1
+back foot
+  rotate: true
+  xy: 776, 521
+  size: 93, 44
+  orig: 93, 44
+  offset: 0, 0
+  index: -1
+back hair
+  rotate: false
+  xy: 673, 440
+  size: 101, 174
+  orig: 101, 174
+  offset: 0, 0
+  index: -1
+back lower arm
+  rotate: true
+  xy: 778, 620
+  size: 72, 89
+  orig: 72, 89
+  offset: 0, 0
+  index: -1
+back lower leg
+  rotate: true
+  xy: 920, 465
+  size: 49, 73
+  orig: 49, 73
+  offset: 0, 0
+  index: -1
+back upper arm
+  rotate: true
+  xy: 847, 89
+  size: 45, 66
+  orig: 45, 66
+  offset: 0, 0
+  index: -1
+back upper leg
+  rotate: true
+  xy: 869, 536
+  size: 58, 77
+  orig: 58, 77
+  offset: 0, 0
+  index: -1
+eyebrow left
+  rotate: false
+  xy: 742, 4
+  size: 69, 41
+  orig: 69, 41
+  offset: 0, 0
+  index: -1
+eyebrow right
+  rotate: true
+  xy: 807, 115
+  size: 97, 38
+  orig: 97, 38
+  offset: 0, 0
+  index: -1
+eyes closed
+  rotate: false
+  xy: 319, 92
+  size: 289, 106
+  orig: 289, 106
+  offset: 0, 0
+  index: -1
+eyes opened
+  rotate: false
+  xy: 492, 616
+  size: 284, 128
+  orig: 284, 128
+  offset: 0, 0
+  index: -1
+face
+  rotate: false
+  xy: 2, 99
+  size: 315, 269
+  orig: 315, 272
+  offset: 0, 3
+  index: -1
+front crown
+  rotate: false
+  xy: 2, 603
+  size: 488, 419
+  orig: 488, 419
+  offset: 0, 0
+  index: -1
+front foot
+  rotate: false
+  xy: 367, 32
+  size: 120, 58
+  orig: 120, 58
+  offset: 0, 0
+  index: -1
+front hair strand
+  rotate: false
+  xy: 777, 776
+  size: 91, 246
+  orig: 91, 246
+  offset: 0, 0
+  index: -1
+front lower arm
+  rotate: true
+  xy: 2, 23
+  size: 74, 132
+  orig: 74, 132
+  offset: 0, 0
+  index: -1
+front lower leg
+  rotate: false
+  xy: 600, 2
+  size: 71, 87
+  orig: 71, 87
+  offset: 0, 0
+  index: -1
+front upper arm
+  rotate: false
+  xy: 763, 214
+  size: 70, 82
+  orig: 70, 82
+  offset: 0, 0
+  index: -1
+front upper leg
+  rotate: false
+  xy: 679, 206
+  size: 82, 90
+  orig: 82, 90
+  offset: 0, 0
+  index: -1
+lower torso
+  rotate: true
+  xy: 704, 91
+  size: 113, 101
+  orig: 113, 101
+  offset: 0, 0
+  index: -1
+main hair
+  rotate: false
+  xy: 492, 746
+  size: 283, 276
+  orig: 283, 276
+  offset: 0, 0
+  index: -1
+mouth angry
+  rotate: false
+  xy: 259, 2
+  size: 106, 87
+  orig: 106, 88
+  offset: 0, 1
+  index: -1
+mouth confused
+  rotate: true
+  xy: 822, 548
+  size: 70, 45
+  orig: 81, 46
+  offset: 0, 1
+  index: -1
+mouth happy
+  rotate: false
+  xy: 869, 645
+  size: 89, 71
+  orig: 93, 89
+  offset: 0, 1
+  index: -1
+mouth normal
+  rotate: true
+  xy: 923, 324
+  size: 66, 44
+  orig: 79, 45
+  offset: 0, 0
+  index: -1
+upper torso
+  rotate: false
+  xy: 870, 865
+  size: 151, 157
+  orig: 151, 157
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 2, 370
+  size: 669, 231
+  orig: 669, 231
+  offset: 0, 0
+  index: -1
