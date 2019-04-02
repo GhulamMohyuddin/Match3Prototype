@@ -78,6 +78,7 @@ public class BoardManager : MonoBehaviour {
 
     public void PlayAttackerAnimation()
     {
+        attacker.state.ClearTracks();
         attacker.AnimationName = "skill";
         attacker.loop = false;
         SFXManager.instance.PlaySFX(Clip.attackerSkill);
@@ -100,7 +101,8 @@ public class BoardManager : MonoBehaviour {
 
     public void PlayAttackerDefenseAnimation()
     {
-     
+
+        attacker.state.ClearTracks();
         attacker.AnimationName = "defense";
         attacker.loop = false;
         attacker.AnimationState.Start += delegate (Spine.TrackEntry trackEntry) {
@@ -108,36 +110,23 @@ public class BoardManager : MonoBehaviour {
             Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
 
         };
-        attacker.AnimationState.Complete += delegate (Spine.TrackEntry entry) {
-            attacker.state.ClearTrack(entry.trackIndex);
-            attacker.AnimationName = "idle";
-            attacker.loop = true;
-            attacker.AnimationState.Complete += delegate (Spine.TrackEntry track) {
-                // You can also use an anonymous delegate.
-                Debug.Log(string.Format("track {0} ended a new animation.", track.TrackIndex));
-
-            };
-
-        };
+        attacker.AnimationState.Complete += PlayAttackerIdleAnimation;
 
     }
 
     public void PlayAttackerIdleAnimation(Spine.TrackEntry trackEntry)
     {
-
+        attacker.state.ClearTracks();
         attacker.state.ClearTrack(trackEntry.trackIndex);
         attacker.AnimationName = "idle";
         attacker.loop = true;
-        attacker.AnimationState.Complete += delegate (Spine.TrackEntry entry) {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} ended a new animation.", entry.TrackIndex));
-
-        };
+        attacker.AnimationState.Complete += null;
 
     }
 
     public void PlayOpponentAnimation()
     {
+        opponent.state.ClearTracks();
         opponent.AnimationName = "skill";
         opponent.loop = false;
         SFXManager.instance.PlaySFX(Clip.opponentSkill);
@@ -153,6 +142,7 @@ public class BoardManager : MonoBehaviour {
 
     public void PlayOpponentDefenseAnimation()
     {
+        opponent.state.ClearTracks();
         opponent.AnimationName = "defense";
         opponent.loop = false;
         opponent.AnimationState.Start += delegate (Spine.TrackEntry trackEntry)
@@ -176,11 +166,7 @@ public class BoardManager : MonoBehaviour {
         opponent.state.ClearTracks();
         opponent.AnimationName = "idle";
         opponent.loop = true;
-        opponent.AnimationState.Complete += delegate (Spine.TrackEntry entry) {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} ended a new animation.", entry.TrackIndex));
-
-        };
+        opponent.AnimationState.Complete += null;
     }
 
     public IEnumerator FindNullTiles() {
