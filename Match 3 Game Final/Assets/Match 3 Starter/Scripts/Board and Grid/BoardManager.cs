@@ -30,11 +30,6 @@ public class BoardManager : MonoBehaviour {
 	public List<Sprite> characters = new List<Sprite>();
 	public GameObject tile;
 	public int xSize, ySize;
-    public SkeletonAnimation attacker;
-    public SkeletonAnimation opponent;
-
-
-
 
     private GameObject[,] tiles;
 
@@ -78,115 +73,14 @@ public class BoardManager : MonoBehaviour {
 
     public void PlayAttackerAnimation()
     {
-        attacker.state.ClearTracks();
-        attacker.state.SetAnimation(1, "skill", false);
-        attacker.loop = false;
-
-        SFXManager.instance.PlaySFX(Clip.attackerSkill);
-        attacker.AnimationState.Start += delegate (Spine.TrackEntry trackEntry) {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
-
-        };
-
-        attacker.AnimationState.Complete += attackerAnimationCompleted;
-
-    }
-
-    public void attackerAnimationCompleted(Spine.TrackEntry trackEntry)
-    {
-        if(trackEntry.trackIndex == 1)
-        {
-            PlayOpponentDefenseAnimation();
-            PlayAttackerIdleAnimation(trackEntry);
-
-        }
-        else if(trackEntry.trackIndex == 2)
-        {
-            PlayAttackerIdleAnimation(trackEntry);
-        }
-
-
-
-    }
-
-    public void PlayAttackerDefenseAnimation()
-    {
-
-        attacker.state.ClearTracks();
-        attacker.state.SetAnimation(2, "defense", false);
-        attacker.loop = false;
-        attacker.AnimationState.Start += delegate (Spine.TrackEntry trackEntry) {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
-
-        };
-        attacker.AnimationState.Complete += attackerAnimationCompleted;
-
-    }
-
-    public void PlayAttackerIdleAnimation(Spine.TrackEntry trackEntry)
-    {
-        attacker.state.ClearTracks();
-        attacker.state.ClearTrack(trackEntry.trackIndex);
-        attacker.state.SetAnimation(3, "idle", true);
-        attacker.loop = true;
-        attacker.AnimationState.Complete += null;
-
+        AnimationManager.instance.PlayAttackerAnimation();
     }
 
     public void PlayOpponentAnimation()
     {
-        opponent.state.ClearTracks();
-        opponent.state.SetAnimation(1, "skill", false);
-        opponent.loop = false;
-        SFXManager.instance.PlaySFX(Clip.opponentSkill);
-        opponent.AnimationState.Start += delegate (Spine.TrackEntry trackEntry) {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
-
-        };
-
-        opponent.AnimationState.Complete += opponentAnimationCompleted;
-
+        AnimationManager.instance.PlayOpponentAnimation();
     }
 
-    public void PlayOpponentDefenseAnimation()
-    {
-        opponent.state.ClearTracks();
-        opponent.state.SetAnimation(2, "defense", false);
-        opponent.loop = false;
-        opponent.AnimationState.Start += delegate (Spine.TrackEntry trackEntry)
-        {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
-
-        };
-        opponent.AnimationState.Complete += opponentAnimationCompleted;
-    }
-
-    public void opponentAnimationCompleted(Spine.TrackEntry trackEntry)
-    {
-
-        if (trackEntry.trackIndex == 1)
-        {
-            PlayAttackerDefenseAnimation();
-            PlayOpponentIdleAnimation(trackEntry);
-
-        }
-        else if (trackEntry.trackIndex == 2)
-        {
-            PlayOpponentIdleAnimation(trackEntry);
-        }
-    }
-
-    public void PlayOpponentIdleAnimation(Spine.TrackEntry trackEntry)
-    {
-
-        opponent.state.ClearTracks();
-        opponent.state.SetAnimation(3, "idle", true);
-        opponent.AnimationState.Complete += null;
-    }
 
     public IEnumerator FindNullTiles() {
 		for (int x = 0; x < xSize; x++) {
