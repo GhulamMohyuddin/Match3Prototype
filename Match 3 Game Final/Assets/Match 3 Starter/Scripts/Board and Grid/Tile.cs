@@ -24,14 +24,19 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using System;
 
 public class Tile : MonoBehaviour , IDragHandler, IBeginDragHandler, IEndDragHandler
 {
 	private static Color selectedColor = new Color(.5f, .5f, .5f, 1.0f);
 	private static Tile previousSelected = null;
     public Transform initialPosition;
+    public int xPos;
+    public int yPos;
+    bool firstTweenCompleted;
+    bool secondTweenCompleted;
 
-	private SpriteRenderer render;
+    private SpriteRenderer render;
 	private bool isSelected = false;
 
 	private Vector2[] adjacentDirections = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
@@ -46,7 +51,10 @@ public class Tile : MonoBehaviour , IDragHandler, IBeginDragHandler, IEndDragHan
 		previousSelected = gameObject.GetComponent<Tile>();
 		SFXManager.instance.PlaySFX(Clip.Select);
         initialPosition = transform;
-	}
+        firstTweenCompleted = false;
+        secondTweenCompleted = false;
+
+    }
 
 	private void Deselect() {
 		isSelected = false;
@@ -67,7 +75,9 @@ public class Tile : MonoBehaviour , IDragHandler, IBeginDragHandler, IEndDragHan
 				Select();
 			} else {
 				if (GetAllAdjacentTiles().Contains(previousSelected.gameObject)) { // Is it an adjacent tile?
-					SwapSprite(previousSelected.render);
+                    playSwapAnimation(previousSelected.render);
+                    /*SwapSprite(previousSelected.render);
+
                     bool previousMatched = false;
                     bool currentMatched = false;
                     previousMatched =  previousSelected.ClearAllMatches();
@@ -76,7 +86,7 @@ public class Tile : MonoBehaviour , IDragHandler, IBeginDragHandler, IEndDragHan
                     if(currentMatched == false && previousMatched == false)
                     {
                         BoardManager.instance.PlayOpponentAnimation();
-                    }
+                    }*/
 
                 } else {
 					previousSelected.GetComponent<Tile>().Deselect();
@@ -86,18 +96,88 @@ public class Tile : MonoBehaviour , IDragHandler, IBeginDragHandler, IEndDragHan
 		}
 	}
 
-	public void SwapSprite(SpriteRenderer render2) {
+    public void checkMatch()
+    {
+        bool previousMatched = false;
+        bool currentMatched = false;
+        previousMatched = previousSelected.ClearAllMatches();
+        previousSelected.Deselect();
+        currentMatched = ClearAllMatches();
+        if (currentMatched == false && previousMatched == false)
+        {
+            BoardManager.instance.PlayOpponentAnimation();
+        }
+    }
+
+    public void playSwapAnimation(SpriteRenderer render2)
+    {
+        SFXManager.instance.PlaySFX(Clip.Swap);
+        Transform firstSpriteTransform = transform;
+        Transform secondSpriteTransform = render2.GetComponent<Tile>().transform;
+
+        GoTween firstTransformTween = transform.positionTo(0.3f, secondSpriteTransform.position);
+        GoTween SecondTransformTween = secondSpriteTransform.positionTo(0.3f, firstSpriteTransform.position);
+
+        firstTransformTween.setOnCompleteHandler(OnFirstCompleteHandler);
+        SecondTransformTween.setOnCompleteHandler(OnSecondCompleteHandler);
+    }
+
+    public void SwapSprite(SpriteRenderer render2) {
 		if (render.sprite == render2.sprite) {
-			return;
+            return;
 		}
 
-		Sprite tempSprite = render2.sprite;
-		render2.sprite = render.sprite;
-		render.sprite = tempSprite;
-		SFXManager.instance.PlaySFX(Clip.Swap);
-	}
 
-	private GameObject GetAdjacent(Vector2 castDir) {
+        Sprite tempSprite = render2.sprite;
+        render2.sprite = render.sprite;
+        render.sprite = tempSprite;
+
+        //render.transform.positionTo(0.0f, firstSpriteTransform.position);
+        //render2.transform.positionTo(0.0f, secondSpriteTransform.position);*/
+
+    }
+
+
+
+    void OnFirstCompleteHandler(AbstractGoTween tween)
+    {
+        firstTweenCompleted = true;
+        if(secondTweenCompleted == true)
+        {
+            Vector3 firstSpriteTransform = transform.position;
+            Vector3 secondSpriteTransform = previousSelected.GetComponent<Tile>().transform.position;
+
+            transform.position = secondSpriteTransform;
+            previousSelected.GetComponent<Tile>().transform.position = firstSpriteTransform;
+
+
+            firstTweenCompleted = false;
+            secondTweenCompleted = false;
+            SwapSprite(previousSelected.render);
+            checkMatch();
+        }
+    }
+
+    void OnSecondCompleteHandler(AbstractGoTween tween)
+    {
+        secondTweenCompleted = true;
+        if (firstTweenCompleted == true)
+        {
+
+            Vector3 firstSpriteTransform = transform.position;
+            Vector3 secondSpriteTransform = previousSelected.GetComponent<Tile>().transform.position;
+
+            transform.position = secondSpriteTransform;
+            previousSelected.GetComponent<Tile>().transform.position= firstSpriteTransform;
+
+            firstTweenCompleted = false;
+            secondTweenCompleted = false;
+            SwapSprite(previousSelected.render);
+            checkMatch();
+        }
+    }
+
+    private GameObject GetAdjacent(Vector2 castDir) {
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, castDir);
 		if (hit.collider != null) {
 			return hit.collider.gameObject;
@@ -158,20 +238,6 @@ public class Tile : MonoBehaviour , IDragHandler, IBeginDragHandler, IEndDragHan
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(BoardManager.instance.isBoardCreated)
-        {
-            Tile tileObject = collision.gameObject.GetComponent<Tile>();
-            if (tileObject)
-            {
-                Debug.Log("collides");
-                OnMouseDown();
-                transform.position = tileObject.transform.position;
-                tileObject.transform.position = initialPosition.position;
-
-
-
-            }
-        }
 
     }
     public void OnBeginDrag(PointerEventData data)

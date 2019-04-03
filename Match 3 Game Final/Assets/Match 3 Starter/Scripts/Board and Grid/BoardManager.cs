@@ -58,6 +58,10 @@ public class BoardManager : MonoBehaviour {
 			for (int y = 0; y < ySize; y++) {
 				GameObject newTile = Instantiate(tile, new Vector3(startX + (xOffset * x), startY + (yOffset * y), 0), tile.transform.rotation);
 				tiles[x, y] = newTile;
+                Tile tileObject = newTile.GetComponent<Tile>();
+                tileObject.xPos = x;
+                tileObject.yPos = y;
+                
 				newTile.transform.parent = transform; // Add this line
 
 				List<Sprite> possibleCharacters = new List<Sprite>();
@@ -75,7 +79,10 @@ public class BoardManager : MonoBehaviour {
         Invoke("invokeBoardCreation", 2);
     }
 
-
+    public void SetTile(int x, int y,Tile tileObject)
+    {
+        tiles[x, y] = tileObject.gameObject;
+    }
     void invokeBoardCreation()
     {
         isBoardCreated = true;
@@ -121,12 +128,23 @@ public class BoardManager : MonoBehaviour {
 			renders.Add(render);
 		}
 
-		for (int i = 0; i < nullCount; i++) {
+        for (int i = 0; i < nullCount; i++) {
 			yield return new WaitForSeconds(shiftDelay);
-			for (int k = 0; k < renders.Count - 1; k++) {
-				renders[k].sprite = renders[k + 1].sprite;
-				renders[k + 1].sprite = GetNewSprite(x, ySize - 1);
-			}
+
+            if (ySize - yStart == 1)
+            {
+                renders[0].sprite = GetNewSprite(x, ySize - 1); ;
+            }
+            else
+            {
+                for (int k = 0; k < renders.Count - 1; k++)
+                {
+                    renders[k].sprite = renders[k + 1].sprite;
+                    renders[k + 1].sprite = GetNewSprite(x, ySize - 1);
+                }
+            }
+
+
 		}
 		IsShifting = false;
 	}
@@ -144,8 +162,9 @@ public class BoardManager : MonoBehaviour {
 		if (y > 0) {
 			possibleCharacters.Remove(tiles[x, y - 1].GetComponent<SpriteRenderer>().sprite);
 		}
+       
 
-		return possibleCharacters[Random.Range(0, possibleCharacters.Count)];
+        return possibleCharacters[Random.Range(0, possibleCharacters.Count)];
 	}
 
 }

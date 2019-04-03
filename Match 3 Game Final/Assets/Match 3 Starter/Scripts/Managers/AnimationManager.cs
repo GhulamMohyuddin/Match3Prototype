@@ -29,11 +29,7 @@ public class AnimationManager : MonoBehaviour
         attacker.loop = false;
 
         SFXManager.instance.PlaySFX(Clip.attackerSkill);
-        attacker.AnimationState.Start += delegate (Spine.TrackEntry trackEntry) {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
 
-        };
 
         attacker.AnimationState.Complete += attackerAnimationCompleted;
 
@@ -62,11 +58,7 @@ public class AnimationManager : MonoBehaviour
         attacker.state.ClearTracks();
         attacker.state.SetAnimation(2, "fight-mode", false);
         attacker.loop = false;
-        attacker.AnimationState.Start += delegate (Spine.TrackEntry trackEntry) {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
 
-        };
         attacker.AnimationState.Complete += attackerAnimationCompleted;
 
     }
@@ -85,11 +77,7 @@ public class AnimationManager : MonoBehaviour
         opponent.state.SetAnimation(1, "skill", false);
         opponent.loop = false;
         SFXManager.instance.PlaySFX(Clip.opponentSkill);
-        opponent.AnimationState.Start += delegate (Spine.TrackEntry trackEntry) {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
 
-        };
 
         opponent.AnimationState.Complete += opponentAnimationCompleted;
 
@@ -100,12 +88,7 @@ public class AnimationManager : MonoBehaviour
         opponent.state.ClearTracks();
         opponent.state.SetAnimation(2, "hit", false);
         opponent.loop = false;
-        opponent.AnimationState.Start += delegate (Spine.TrackEntry trackEntry)
-        {
-            // You can also use an anonymous delegate.
-            Debug.Log(string.Format("track {0} started a new animation.", trackEntry.TrackIndex));
 
-        };
         opponent.AnimationState.Complete += opponentAnimationCompleted;
     }
 
