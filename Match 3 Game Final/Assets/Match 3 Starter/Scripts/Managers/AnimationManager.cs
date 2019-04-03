@@ -60,7 +60,7 @@ public class AnimationManager : MonoBehaviour
     {
 
         attacker.state.ClearTracks();
-        attacker.state.SetAnimation(2, "defense", false);
+        attacker.state.SetAnimation(2, "fight-mode", false);
         attacker.loop = false;
         attacker.AnimationState.Start += delegate (Spine.TrackEntry trackEntry) {
             // You can also use an anonymous delegate.
@@ -73,8 +73,6 @@ public class AnimationManager : MonoBehaviour
 
     private void PlayAttackerIdleAnimation(Spine.TrackEntry trackEntry)
     {
-        attacker.state.ClearTracks();
-        attacker.state.ClearTrack(trackEntry.trackIndex);
         attacker.state.SetAnimation(3, "idle", true);
         attacker.loop = true;
         attacker.AnimationState.Complete += null;
@@ -100,7 +98,7 @@ public class AnimationManager : MonoBehaviour
     private void PlayOpponentDefenseAnimation()
     {
         opponent.state.ClearTracks();
-        opponent.state.SetAnimation(2, "defense", false);
+        opponent.state.SetAnimation(2, "hit", false);
         opponent.loop = false;
         opponent.AnimationState.Start += delegate (Spine.TrackEntry trackEntry)
         {

@@ -171,6 +171,7 @@
     <None Include="Assets\Spine\spine-unity\Modules\Shaders\Spine-Skeleton-Fill.shader" />
     <None Include="Assets\Spine\spine-unity\Modules\Shaders\Sprite\CGIncludes\SpritePixelLighting.cginc" />
     <None Include="Assets\Spine\spine-unity\Modules\Shaders\Sprite\SpriteVertexLighting.cginc" />
+    <None Include="Assets\SpineData\IceQueen\IceQueen.atlas.txt" />
     <None Include="Assets\Spine\spine-unity\Modules\Shaders\Sprite\SpriteShadows.cginc" />
     <None Include="Assets\Spine\spine-unity\Modules\Shaders\Sprite\CGIncludes\SpriteShadows.cginc" />
     <None Include="Assets\Spine\spine-unity\Modules\Shaders\Sprite\SpritePixelLighting.cginc" />
