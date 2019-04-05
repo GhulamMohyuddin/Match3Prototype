@@ -27,21 +27,36 @@ using Spine.Unity;
 
 public class BoardManager : MonoBehaviour {
 	public static BoardManager instance;
+    public Camera mainCamera;
 	public List<Sprite> characters = new List<Sprite>();
 	public GameObject tile;
 	public int xSize, ySize;
     public bool isBoardCreated;
 
     private GameObject[,] tiles;
+    private float scaleTile;
 
 	public bool IsShifting { get; set; }
 
 	void Start () {
 		instance = GetComponent<BoardManager>();
 
-		Vector2 offset = tile.GetComponent<SpriteRenderer>().bounds.size;
+        Vector2 offset = tile.GetComponent<SpriteRenderer>().bounds.size;
+        scaleTile = tile.transform.localScale.x;
+
+        Vector3 bottomLeft = new Vector3(0, 0, 0);
+        Vector3 blPosition = Camera.main.ViewportToWorldPoint(bottomLeft);
+        transform.position = blPosition;
+
+        Vector3 bottomRight = new Vector3(1, 0, 0);
+        Vector3 brPosition = Camera.main.ViewportToWorldPoint(bottomRight);
+
+
+        float xPos = (Mathf.Abs(blPosition.x) + Mathf.Abs(brPosition.x))/xSize;
+        scaleTile = (xPos / offset.x) * scaleTile;
+
         isBoardCreated = false;
-        CreateBoard(offset.x, offset.y);
+        CreateBoard(xPos, offset.y);
 
     }
 
@@ -57,6 +72,7 @@ public class BoardManager : MonoBehaviour {
 		for (int x = 0; x < xSize; x++) {
 			for (int y = 0; y < ySize; y++) {
 				GameObject newTile = Instantiate(tile, new Vector3(startX + (xOffset * x), startY + (yOffset * y), 0), tile.transform.rotation);
+                newTile.transform.localScale = new Vector3(scaleTile, scaleTile, scaleTile);
 				tiles[x, y] = newTile;
                 Tile tileObject = newTile.GetComponent<Tile>();
                 tileObject.xPos = x;
@@ -76,6 +92,8 @@ public class BoardManager : MonoBehaviour {
 				previousBelow = newSprite;
 			}
         }
+
+        transform.position = new Vector3(transform.position.x + tiles[0, 0].GetComponent<SpriteRenderer>().bounds.size.x / 2, transform.position.y + tiles[0, 0].GetComponent<SpriteRenderer>().bounds.size.y / 2, 0);
         Invoke("invokeBoardCreation", 2);
     }
 
